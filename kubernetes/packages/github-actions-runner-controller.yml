@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: actions-runner-system
+
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: actions-runner-controller
+  namespace: kube-system
+spec:
+  chart: actions-runner-controller
+  repo: https://actions-runner-controller.github.io/actions-runner-controller
+  version: 0.15.0
+  targetNamespace: actions-runner-system
+  valuesContent: |-
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "0.25"
+      limits:
+        memory: "256Mi"
+        cpu: "2.00"
