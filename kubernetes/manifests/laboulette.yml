@@ -82,7 +82,7 @@ spec:
             - name: db
               mountPath: /db
       imagePullSecrets:
-        - name: dockerconfigjson-github-com
+        - name: dockerconfigjson-github-com-laboulette
       volumes:
         - name: db
           hostPath:
