@@ -50,5 +50,10 @@ filters:
 ```
 
 ## Deploy
-
 Run `ansible-playbook setup_cluster.yml -i inventory_static.yml -i inventory_ec2.yml -e fqdn=example.com -e display_k8s_dashboard_password=true`
+
+## Github Actions Setup
++ https://github.com/actions-runner-controller/actions-runner-controller
+
+## Github Container Registry
++ https://dev.to/asizikov/using-github-container-registry-with-kubernetes-38fb
