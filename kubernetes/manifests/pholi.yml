@@ -1,0 +1,66 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pholi
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      name: web
+      port: 8000
+  selector:
+    app: pholi
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pholi
+  namespace: default
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`pholi.${DOMAIN_NAME}`)
+      kind: Rule
+      services:
+        - name: pholi
+          port: 8000
+  tls:
+    secretName: wilcard-main-domain-tls
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pholi
+  namespace: default
+  labels:
+    app: pholi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pholi
+  template:
+    metadata:
+      labels:
+        app: pholi
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/yoangau/pholi-stab:latest
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "0.25"
+            limits:
+              memory: "1024Mi"
+              cpu: "2.00"
+          ports:
+            - name: web
+              containerPort: 8000
+      imagePullSecrets:
+        - name: dockerconfigjson-github-com-pholi
