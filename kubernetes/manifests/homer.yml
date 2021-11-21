@@ -48,50 +48,16 @@ data:
     footer: false
 
     services:
-      - name: "Media"
-        icon: "fas fa-video"
-        items:
-          - name: "Nextcloud"
-            logo: "https://github.com/nextcloud/server/raw/0450e47f8dda26d19a0a252ddd5a117fddfa6885/core/img/logo/logo.png"
-            url: "https://nextcloud.${DOMAIN_NAME}"
-          - name: "Jellyfin"
-            logo: "https://github.com/jellyfin/jellyfin/raw/cd36b8067fcf80c5ebb47bdd9bea0047d1fe3aef/Emby.Dlna/Images/logo240.png"
-            url: "https://jellyfin.${DOMAIN_NAME}"
-          - name: "Booksonic"
-            logo: "https://booksonic.org/assets/img/booksonic.png"
-            url: "https://booksonic.${DOMAIN_NAME}"
-          - name: "aria2"
-            logo: "https://raw.githubusercontent.com/mayswind/AriaNg/fb142ad720ff258f8bc42f28d2adcafdc9dcce57/src/tileicon.png"
-            url: "https://aria2.${DOMAIN_NAME}"
-
       - name: "Feed"
         icon: "fas fa-rss"
         items:
-          - name: "tt-rss"
-            logo: "https://git.tt-rss.org/repo-avatars/3-9e1f83d2fac71ea097eeaf1776137cde"
-            url: "https://ttrss.${DOMAIN_NAME}"
           - name: "Huginn"
             logo: "https://camo.githubusercontent.com/198521c8a76f1a87b04042e7ed5ce864caf8b033ef3a655ca48cd1114291f7e4/68747470733a2f2f7261772e6769746875622e636f6d2f687567696e6e2f687567696e6e2f6d61737465722f6d656469612f687567696e6e2d6c6f676f2e706e67"
             url: "https://huginn.${DOMAIN_NAME}"
 
-      - name: "Home automation"
-        icon: "fas fa-home"
-        items:
-          - name: "Home Assistant"
-            logo: "https://www.home-assistant.io/images/favicon-192x192-full.png"
-            url: "https://home-assistant.${DOMAIN_NAME}"
-          - name: "OctoPrint"
-            logo: "https://camo.githubusercontent.com/627be7fc67195b626b298af9b9677d7c58e698c67305e54324cffbe06130d4a4/68747470733a2f2f6f63746f7072696e742e6f72672f6173736574732f696d672f6c6f676f2e706e67"
-            url: "https://octoprint.${DOMAIN_NAME}"
-          - name: "Smart Strike"
-            url: "https://smart-strike.${DOMAIN_NAME}"
-
       - name: "Database"
         icon: "fas fa-database"
         items:
-          - name: "Keycloak"
-            logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Keycloak_Logo.png"
-            url: "https://keycloak.${DOMAIN_NAME}"
           - name: "pgAdmin4"
             logo: "https://www.pgadmin.org/static/docs/pgadmin4-dev/docs/en_US/_build/html/_images/logo-right-128.png"
             url: "https://pgadmin4.${DOMAIN_NAME}"
@@ -105,9 +71,6 @@ data:
           - name: "PiHole"
             logo: "https://camo.githubusercontent.com/9426a93d32aa9f5ad757b2befcdb762a270d344efd6b8d287a2cea2c4c2233b8/68747470733a2f2f70692d686f6c652e6769746875622e696f2f67726170686963732f566f727465782f566f727465785f776974685f576f72646d61726b2e737667"
             url: "https://pihole.${DOMAIN_NAME}"
-          - name: "Duplicati"
-            logo: "https://raw.githubusercontent.com/duplicati/duplicati/184dfeae7860cd34019baf3d3ca635bf6b79dfbe/Duplicati/Server/webroot/img/logo.png"
-            url: "https://duplicati.${DOMAIN_NAME}"
 
       - name: "Monitoring"
         icon: "fas fa-heartbeat"
