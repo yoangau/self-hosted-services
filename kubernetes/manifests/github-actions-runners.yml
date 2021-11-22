@@ -1,9 +1,26 @@
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
-kind: Runner
+kind: RunnerDeployment
 metadata:
-  name: trinity-roguelike-runner
+  name: trinity-roguelike-runner-deployment
   namespace: default
 spec:
-  repository: yoangau/trinity-roguelike
-  env: []
+  template:
+    spec:
+      repository: yoangau/trinity-roguelike
+      image: yoangau/github-actions-runner:latest
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: gitlab-runner-deployment-autoscaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: trinity-roguelike-runner-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+    repositoryNames:
+    - yoangau/trinity-roguelike
