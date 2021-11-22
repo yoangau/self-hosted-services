@@ -57,3 +57,9 @@ Run `ansible-playbook setup_cluster.yml -i inventory_static.yml -i inventory_ec2
 
 ## Github Container Registry
 + https://dev.to/asizikov/using-github-container-registry-with-kubernetes-38fb
+
+## Generate kubernetes token
+
+```bash
+$kubectl -n kubernetes-dashboard get secret (sudo kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+```
