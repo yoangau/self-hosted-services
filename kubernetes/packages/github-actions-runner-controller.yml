@@ -3,7 +3,15 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: actions-runner-system
-
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: actions-runner-system
+  namespace: actions-runner-system
+type: Opaque
+# stringData:
+#   github_token: "token"
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
@@ -23,3 +31,5 @@ spec:
       limits:
         memory: "256Mi"
         cpu: "2.00"
+    authSecret:
+      name: actions-runner-system
