@@ -1,0 +1,9 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: Runner
+metadata:
+  name: trinity-roguelike-runner
+  namespace: default
+spec:
+  repository: yoangau/trinity-roguelike
+  env: []
