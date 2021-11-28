@@ -1,26 +1,33 @@
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
-kind: RunnerDeployment
+kind: RunnerSet
 metadata:
-  name: trinity-roguelike-runner-deployment
+  name: trinity-roguelike-ci
   namespace: default
 spec:
+  ephemeral: false
+  repository: yoangau/trinity-roguelike
+  # Other mandatory fields from StatefulSet
+  selector:
+    matchLabels:
+      app: trinity-roguelike-ci
+  serviceName: trinity-roguelike-ci
   template:
-    spec:
-      repository: yoangau/trinity-roguelike
-      image: yoangau/github-actions-runner:latest
+    metadata:
+      labels:
+        app: trinity-roguelike-ci
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
-  name: gitlab-runner-deployment-autoscaler
+  name: trinity-roguelike-ci
   namespace: default
 spec:
   scaleTargetRef:
-    name: trinity-roguelike-runner-deployment
+    name: trinity-roguelike-ci
   minReplicas: 1
   maxReplicas: 5
   metrics:
   - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
     repositoryNames:
-    - yoangau/trinity-roguelike
+    - trinity-roguelike-ci

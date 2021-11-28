@@ -33,3 +33,4 @@ spec:
         cpu: "2.00"
     authSecret:
       name: actions-runner-system
+    syncPeriod: 1m
