@@ -74,6 +74,7 @@ spec:
       containers:
         - name: app
           image: charlocharlie/epicgames-freegames
+          imagePullPolicy: Always
           resources:
             requests:
               memory: "64Mi"
