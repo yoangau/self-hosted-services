@@ -40,7 +40,9 @@ metadata:
 type: Opaque
 # stringData:
 #   jwt_secret: "somecode"
-
+#   jwt_verification_secret: "somecode"
+#   email_user: "somecode"
+#   email_password: "somecode"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -78,6 +80,13 @@ spec:
                   key: jwt_secret
             - name: JWT_EXPIRATION
               value: "30d"
+            - name: JWT_VERIFICATION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: pholi-server
+                  key: jwt_verification_secret
+            - name: JWT_VERIFICATION_EXPIRATION
+              value: "10h"
             - name: DB_TYPE
               value: "postgres"
             - name: DB_HOST
@@ -93,6 +102,22 @@ spec:
                 secretKeyRef:
                   name: postgresql
                   key: postgres_password
+            - name: EMAIL_CONFIRMATION_URL
+              value: https://pholi.io/email/confirm
+            - name: EMAIL_HOST
+              value: email-smtp.us-east-1.amazonaws.com
+            - name: EMAIL_ADDRESS
+              value: registration@pholi.io
+            - name: EMAIL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pholi-server
+                  key: email_user
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pholi-server
+                  key: email_password
           ports:
             - name: web
               containerPort: 3000
