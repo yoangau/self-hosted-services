@@ -28,6 +28,39 @@ spec:
   minReplicas: 1
   maxReplicas: 5
   metrics:
-  - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
-    repositoryNames:
-    - trinity-roguelike-ci
+    - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+      repositoryNames:
+        - trinity-roguelike-ci
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerSet
+metadata:
+  name: pholi-ci
+  namespace: default
+spec:
+  ephemeral: true
+  repository: yoangau/pholi-server
+  # Other mandatory fields from StatefulSet
+  selector:
+    matchLabels:
+      app: pholi-ci
+  serviceName: pholi-ci
+  template:
+    metadata:
+      labels:
+        app: pholi-ci
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: pholi-ci
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: pholi-ci
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+      repositoryNames:
+        - yoangau/pholi-server
