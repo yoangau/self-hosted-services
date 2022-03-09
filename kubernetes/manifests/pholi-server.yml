@@ -93,12 +93,20 @@ spec:
                 secretKeyRef:
                   name: pholi-server
                   key: prisma_database_url
+            - name: REDIS_HOST
+              value: redis
+            - name: REDIS_PORT
+              value: "6379"
+            - name: THROTTLE_TTL
+              value: "60"
+            - name: THROTTLE_LIMIT
+              value: "60"
             - name: EMAIL_CONFIRMATION_URL
               value: https://pholi.io/email/confirm
             - name: EMAIL_HOST
               value: email-smtp.us-east-1.amazonaws.com
             - name: EMAIL_ADDRESS
-              value: registration@pholi.io
+              value: no-reply@pholi.io
             - name: EMAIL_USER
               valueFrom:
                 secretKeyRef:
