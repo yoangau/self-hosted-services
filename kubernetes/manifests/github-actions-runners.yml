@@ -64,3 +64,36 @@ spec:
     - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
       repositoryNames:
         - yoangau/pholi-server
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerSet
+metadata:
+  name: pholi-game-ci
+  namespace: default
+spec:
+  ephemeral: true
+  repository: yoangau/pholi-game
+  # Other mandatory fields from StatefulSet
+  selector:
+    matchLabels:
+      app: pholi-game-ci
+  serviceName: pholi-game-ci
+  template:
+    metadata:
+      labels:
+        app: pholi-game-ci
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: pholi-game-ci
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: pholi-game-ci
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+      repositoryNames:
+        - yoangau/pholi-game
