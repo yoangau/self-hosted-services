@@ -82,6 +82,10 @@ data:
           - name: "pgAdmin4"
             logo: "https://www.pgadmin.org/static/docs/pgadmin4-dev/docs/en_US/_build/html/_images/logo-right-128.png"
             url: "https://pgadmin4.${DOMAIN_NAME}"
+          - name: "redis-commander"
+            logo: "https://github.com/zerosandones/redis-command-runner/raw/master/images/redis-128.png"
+            url: "https://redis-commander.${DOMAIN_NAME}"
+      
 
       - name: "Administration"
         icon: "fas fa-tools"
