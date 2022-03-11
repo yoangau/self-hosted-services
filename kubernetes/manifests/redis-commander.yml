@@ -48,6 +48,8 @@ spec:
       services:
         - name: redis-commander
           port: 8081
+      middlewares:
+        - name: redis-commander
   tls:
     secretName: wilcard-main-domain-tls
 ---
